@@ -1,0 +1,36 @@
+.scratch-card-bottom{
+  margin-top:20px;
+  .card-bottom-text{
+    font-size:1.2em;
+  }
+}
+
+ion-content.background{
+  --background: url(../../assets/images/sfondo.png) 0 0/100% 100% no-repeat;
+}
+
+.background-invito{
+  --background: url(../../assets/images/invito.png) no-repeat;
+}
+
+.cuore-1 {
+  top: 431px;
+  position: absolute;
+  left: 107px;
+}
+
+.cuore-2 {
+  top: 431px;
+  position: absolute;
+  left: 170px;
+}
+
+.cuore-3 {
+  top: 431px;
+  position: absolute;
+  left: 253px;
+}
+
+.cursor {
+  cursor: pointer;
+}
