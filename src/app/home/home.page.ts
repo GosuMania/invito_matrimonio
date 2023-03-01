@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 // @ts-ignore
 import { ScratchCard, SCRATCH_TYPE } from 'scratchcard-js'
-import {Platform} from '@ionic/angular';
+import {IonButton, Platform} from '@ionic/angular';
 import {Capacitor} from "@capacitor/core";
 
 @Component({
@@ -9,11 +9,20 @@ import {Capacitor} from "@capacitor/core";
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage  implements OnInit {
+export class HomePage  implements OnInit, AfterViewInit {
+  audioPath = 'assets/Amore, The Scientist - Coldplay_tagliata.mp3';
+  // @ts-ignore
+  @ViewChild('audio') audio: ElementRef;
+  // @ts-ignore
+  @ViewChild('button') btn: ElementRef;
+
+
+
   heightPlatform = 0;
   widthPlatform = 0;
   widthHearth = 50;
   positionTopHeath = 0;
+  positionTopBottone = 0;
   wc1 = 0;
   wc2 = 0;
   wc3 = 0;
@@ -26,10 +35,11 @@ export class HomePage  implements OnInit {
     this.platform.ready().then(() => {
       this.widthPlatform = this.platform.width();
       this.widthHearth = this.widthPlatform / 5.6;
-      this.positionTopHeath = (1426 * this.widthPlatform) / 1500;
-      this.wc1 = 290 * this.widthPlatform / 1500
-      this.wc2 = 613 * this.widthPlatform / 1500
-      this.wc3 = 933 * this.widthPlatform / 1500
+      this.positionTopHeath = (1305 * this.widthPlatform) / 1500;
+      this.positionTopBottone = (1755 * this.widthPlatform) / 1500;
+      this.wc1 = 288 * this.widthPlatform / 1500
+      this.wc2 = 612 * this.widthPlatform / 1500
+      this.wc3 = 926 * this.widthPlatform / 1500
       setTimeout(() => {
         this.createNewScratchCard();
         this.createNewScratchCard2();
@@ -40,7 +50,9 @@ export class HomePage  implements OnInit {
   }
 
   ngOnInit() {
+  }
 
+  ngAfterViewInit(): void {
   }
 
   createNewScratchCard() {
@@ -58,6 +70,7 @@ export class HomePage  implements OnInit {
         pointSize: 4,
         callback: () => {
           console.log('Now the window will reload !')
+          this.audio.nativeElement.play();
         }
       })
       // Init
@@ -108,7 +121,6 @@ export class HomePage  implements OnInit {
         nPoints: 30,
         pointSize: 4,
         callback: () => {
-          console.log('Now the window will reload !')
         }
       })
       // Init
@@ -119,4 +131,16 @@ export class HomePage  implements OnInit {
 
   }
 
+  linkMapVillaGervasio() {
+    window.open('https://maps.app.goo.gl/MFWKaSRhMUQnQxpW7', '_blank');
+
+  }
+
+  startAudio() {
+    if(this.audio.nativeElement.paused) {
+      console.log('go')
+      this.audio.nativeElement.play();
+    }
+
+  }
 }

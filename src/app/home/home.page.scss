@@ -6,11 +6,11 @@
 }
 
 ion-content.background{
-  --background: url(../../assets/images/sfondo.png) 0 0/100% 100% no-repeat;
+  --background: url(../../assets/invito/sfondo.png) 0 0/100% 100% no-repeat;
 }
 
 .background-invito{
-  --background: url(../../assets/images/invito.png) no-repeat;
+  --background: url(../../assets/invito/invito.png) no-repeat;
 }
 
 .cuore-1 {
@@ -33,4 +33,10 @@ ion-content.background{
 
 .cursor {
   cursor: pointer;
+}
+
+.bottone {
+  position: absolute;
+  top: 358px;
+  width: inherit;
 }
