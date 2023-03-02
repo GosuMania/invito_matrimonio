@@ -7,6 +7,10 @@
 
 ion-content.background{
   --background: url(../../assets/invito/sfondo.png) 0 0/100% 100% no-repeat;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .background-invito{
@@ -31,6 +35,12 @@ ion-content.background{
   left: 253px;
 }
 
+.cuori {
+  top: 431px;
+  position: absolute;
+  // width: 100%;
+}
+
 .cursor {
   cursor: pointer;
 }
@@ -39,4 +49,20 @@ ion-content.background{
   position: absolute;
   top: 358px;
   width: inherit;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+video {
+  pointer-events: none;
+}
+
+.rotate_image {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }

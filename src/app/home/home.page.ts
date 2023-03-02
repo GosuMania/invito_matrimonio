@@ -10,12 +10,18 @@ import {Capacitor} from "@capacitor/core";
   styleUrls: ['home.page.scss'],
 })
 export class HomePage  implements OnInit, AfterViewInit {
-  audioPath = 'assets/Amore, The Scientist - Coldplay_tagliata.mp3';
+  videoPath = 'assets/video_dito.mp4';
+  audioPath = 'assets/A Sky Full Of Stars.mp3';
+  showALl = false;
+
   // @ts-ignore
   @ViewChild('audio') audio: ElementRef;
   // @ts-ignore
   @ViewChild('button') btn: ElementRef;
 
+  show = false;
+  stopAutoplay = false;
+  showMano = true;
 
 
   heightPlatform = 0;
@@ -23,6 +29,9 @@ export class HomePage  implements OnInit, AfterViewInit {
   widthHearth = 50;
   positionTopHeath = 0;
   positionTopBottone = 0;
+  positionTopDito = 0;
+  widthDito = 70;
+  leftDito = 100;
   wc1 = 0;
   wc2 = 0;
   wc3 = 0;
@@ -34,17 +43,30 @@ export class HomePage  implements OnInit, AfterViewInit {
   constructor(private platform: Platform) {
     this.platform.ready().then(() => {
       this.widthPlatform = this.platform.width();
-      this.widthHearth = this.widthPlatform / 5.6;
-      this.positionTopHeath = (1305 * this.widthPlatform) / 1500;
-      this.positionTopBottone = (1755 * this.widthPlatform) / 1500;
-      this.wc1 = 288 * this.widthPlatform / 1500
-      this.wc2 = 612 * this.widthPlatform / 1500
-      this.wc3 = 926 * this.widthPlatform / 1500
+
+      this.positionTopHeath = (1320 * this.widthPlatform) / 1500;
+
+      this.positionTopBottone = (1855 * this.widthPlatform) / 1500;
+
+      this.widthDito = this.widthPlatform / 2.6;
+      this.positionTopDito = (1335 * this.widthPlatform) / 1500;
+      this.leftDito = this.widthPlatform / 4.8;
+
       setTimeout(() => {
-        this.createNewScratchCard();
-        this.createNewScratchCard2();
-        this.createNewScratchCard3();
-      }, 100)
+        this.showALl = true;
+        setTimeout(() => {
+          this.createNewScratchCardCuori();
+          this.show = true;
+          setTimeout(() => {
+            try {
+              this.audio.nativeElement.play();
+              this.btn.nativeElement.click();
+              this.audio.nativeElement.play();
+            } catch (e) {
+            }
+          }, 300);
+        }, 100);
+      }, 300)
     });
 
   }
@@ -53,21 +75,22 @@ export class HomePage  implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+
   }
 
-  createNewScratchCard() {
+  createNewScratchCardCuori() {
     try {
-      const scContainer = document.getElementById('js--sc--container')
+      // const scContainer = document.getElementById('js--sc--container')
       const sc = new ScratchCard('#js--sc--container', {
-        scratchType: SCRATCH_TYPE.CIRCLE,
-        containerWidth: this.widthHearth,//scContainer.offsetWidth,
-        containerHeight: this.widthHearth,
-        imageForwardSrc: './assets/images/cuore.png',
-        //imageBackgroundSrc: './assets/images/scratchcard-background.svg',
-        htmlBackground: '<div class="cardamountcss"><div class="won-amnt">30</div><div class="won-text">Points<br>Won!</div></div>',
-        clearZoneRadius: this.widthHearth / 10,
-        nPoints: 30,
-        pointSize: 4,
+        scratchType: 1,
+        containerWidth: this.widthPlatform,//scContainer.offsetWidth,
+        containerHeight: this.widthPlatform / 3.98,
+        imageForwardSrc: './assets/invito/cuori.png',
+        htmlBackground: '<p class="test" style="display: none"><strong>Hello i am HTML content !</strong></p>',
+        clearZoneRadius: this.widthPlatform / 10,
+        nPoints: 50,
+        pointSize: 3,
+        percentToFinish: 85,
         callback: () => {
           console.log('Now the window will reload !')
           this.audio.nativeElement.play();
@@ -76,59 +99,8 @@ export class HomePage  implements OnInit, AfterViewInit {
       // Init
       sc.init();
     } catch (e) {
-
+      console.log(e);
     }
-
-  }
-
-  createNewScratchCard2() {
-    try {
-      const scContainer = document.getElementById('js--sc--container2')
-      const sc = new ScratchCard('#js--sc--container2', {
-        scratchType: SCRATCH_TYPE.CIRCLE,
-        containerWidth: this.widthHearth,//scContainer.offsetWidth,
-        containerHeight: this.widthHearth,
-        imageForwardSrc: './assets/images/cuore.png',
-        //imageBackgroundSrc: './assets/images/scratchcard-background.svg',
-        htmlBackground: '<div class="cardamountcss"><div class="won-amnt">30</div><div class="won-text">Points<br>Won!</div></div>',
-        clearZoneRadius: this.widthHearth / 10,
-        nPoints: 30,
-        pointSize: 4,
-        callback: () => {
-          console.log('Now the window will reload !')
-        }
-      })
-      // Init
-      sc.init();
-    } catch (e) {
-
-    }
-
-  }
-
-
-  createNewScratchCard3() {
-    try {
-      const scContainer = document.getElementById('js--sc--container3')
-      const sc = new ScratchCard('#js--sc--container3', {
-        scratchType: SCRATCH_TYPE.CIRCLE,
-        containerWidth: this.widthHearth,//scContainer.offsetWidth,
-        containerHeight: this.widthHearth,
-        imageForwardSrc: './assets/images/cuore.png',
-        //imageBackgroundSrc: './assets/images/scratchcard-background.svg',
-        htmlBackground: '<div class="cardamountcss"><div class="won-amnt">30</div><div class="won-text">Points<br>Won!</div></div>',
-        clearZoneRadius: this.widthHearth / 10,
-        nPoints: 30,
-        pointSize: 4,
-        callback: () => {
-        }
-      })
-      // Init
-      sc.init();
-    } catch (e) {
-
-    }
-
   }
 
   linkMapVillaGervasio() {
@@ -137,9 +109,15 @@ export class HomePage  implements OnInit, AfterViewInit {
   }
 
   startAudio() {
-    if(this.audio.nativeElement.paused) {
-      console.log('go')
-      this.audio.nativeElement.play();
+    try {
+      if(this.audio.nativeElement.paused && !this.stopAutoplay) {
+        console.log('go')
+        this.audio.nativeElement.play();
+        this.stopAutoplay = true;
+      }
+      this.showMano = false;
+    } catch (e) {
+      this.showMano = false;
     }
 
   }

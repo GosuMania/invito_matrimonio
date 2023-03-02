@@ -1,37 +1,36 @@
 <ion-content padding class="background" (click)="startAudio()">
-  <div style="position: relative">
-    <ion-img src="assets/invito/invito.png" alt="invito matrimonio luigi e simona" style="margin-top: 10px;"></ion-img>
-    <div text-center class="cuore-1 cursor" [style.top]="positionTopHeath + 'px !important'" [style.left]="wc1 + 'px !important'">
-      <div class="sc__wrapper">
+  <ng-container *ngIf="showALl">
+    <div style="position: relative">
+      <ion-img src="assets/invito/invito.png" alt="invito matrimonio luigi e simona"
+               style="margin-top: 10px;"></ion-img>
+      <div text-center class="cuori" [style.top]="positionTopHeath + 'px !important'">
         <div id="js--sc--container"></div>
       </div>
-    </div>
-    <div text-center class="cuore-2" [style.top]="positionTopHeath + 'px !important'" [style.left]="wc2 + 'px !important'">
-      <div class="sc__wrapper">
-        <div id="js--sc--container2"></div>
-      </div>
-    </div>
-    <div text-center class="cuore-3" [style.top]="positionTopHeath + 'px !important'" [style.left]="wc3 + 'px !important'">
-      <div class="sc__wrapper">
-        <div id="js--sc--container3"></div>
-      </div>
-    </div>
-    <div style="text-align: center; width: 100%">
-      <ion-img src="assets/invito/bottone.png"
+      <ion-img src="assets/invito/bottone_dove.png"
                class="bottone"
                [style.top]="positionTopBottone + 'px !important'"
-               (click)="linkMapVillaGervasio()"
-      >
-
+               (click)="linkMapVillaGervasio()">
       </ion-img>
+
+      <div class="cuore-3" *ngIf="showMano" style="text-align: center; width: 100%; z-index: 99; opacity: 0.8"
+           [style.top]="positionTopDito + 'px !important'"
+           [style.left]="leftDito + 'px !important'">
+        <ion-img *ngIf="show" class="rotate_image" src="assets/mano-gif.gif" [style.width]="widthDito + 'px !important'"
+                 autoplay="autoplay" (click)="startAudio()"
+        >
+        </ion-img>
+      </div>
+
+      <div style="text-align: center; opacity: 0.7" *ngIf="show">
+        <audio controls autoplay="autoplay" loop #audio>
+          <source [src]="audioPath" type="audio/mpeg">
+        </audio>
+      </div>
     </div>
-
-  </div>
-
-  <div style="text-align: center; opacity: 0.7">
-    <audio controls autoplay loop #audio>
-      <source [src]="audioPath" type="audio/mpeg">
-    </audio>
-  </div>
+    <iframe type="audio/mp3" allow="autoplay" style="display: none"
+            src="https://ia800206.us.archive.org/16/items/SilentRingtone/silence_64kb.mp3">
+    </iframe>
+  </ng-container>
 
 </ion-content>
+<button #button style="visibility: hidden"></button>
