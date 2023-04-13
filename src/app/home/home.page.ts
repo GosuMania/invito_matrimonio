@@ -85,7 +85,7 @@ export class HomePage  implements OnInit, AfterViewInit {
         scratchType: 1,
         containerWidth: this.widthPlatform,//scContainer.offsetWidth,
         containerHeight: this.widthPlatform / 3.98,
-        imageForwardSrc: './assets/invito/cuori.png',
+        imageForwardSrc: './assets/invito/cuori.webp',
         htmlBackground: '<p class="test" style="display: none"><strong>Hello i am HTML content !</strong></p>',
         clearZoneRadius: this.widthPlatform / 10,
         nPoints: 50,

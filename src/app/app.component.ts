@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {SpinnerService} from "./services/spinner.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private spinnerSerive: SpinnerService) {
+    this.spinnerSerive.requestStarted();
+    setTimeout(() => {
+      this.spinnerSerive.requestEnded();
+    }, 3100);
+  }
 }
